@@ -24,12 +24,13 @@ exports.register=async (req,res)=>{
     if(check) res.status(400).send("username is exsited")
     else{
         user.save().then(users=>{
-            if(!users) res.status(400).send("Cannot get information")
+            //if(!users) res.status(400).send("Cannot get information")
             res.status(200).send("OK")
-        }).catch(err=>{
-            console.log(err)
-            res.status(400).send("Cannot register")
         })
+        // .catch(err=>{
+        //     //console.log(err)
+        //     res.status(400).send("Cannot register")
+        // })
     }
 
 }
@@ -59,10 +60,11 @@ exports.signin=async (req,res)=>{
         
         tokenList[refreshToken]=response;
         res.status(200).json(response)
-    }).catch((err)=>{
-        console.log(err)
-        res.status(400).send(err.message)
     })
+    // .catch((err)=>{
+    //     console.log(err)
+    //     res.status(400).send(err.message)
+    // })
 
 }
 exports.token=async (req,res)=>{
@@ -102,8 +104,9 @@ exports.token=async (req,res)=>{
         }
         }
         
-    }).catch((err)=>{
-        console.log(err)
-        res.status(400).send(err.message)
     })
+    // .catch((err)=>{
+    //     console.log(err)
+    //     res.status(400).send(err.message)
+    // })
 };

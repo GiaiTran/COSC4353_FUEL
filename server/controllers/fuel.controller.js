@@ -23,9 +23,9 @@ exports.getall=async(req,res)=>{
 }
 
 exports.getallProfile=async(req,res)=>{
-    await db.fuel.findOne({
+    await db.fuel.findAll({
         where:{
-            id:req.params.id
+            slug:req.params.slug
         },
         include:[{
             model:db.profile,
@@ -38,11 +38,11 @@ exports.getallProfile=async(req,res)=>{
         
         }]
     }).then(fuel=>{
-        //if(!fuel) return res.status(400).send("No Data found")
+        // if(!fuel) return res.status(400).send("No Data found")
         return res.status(200).send(fuel)
-    }).catch(err=>{
+    }).catch(()=>{
         //console.log(err)
-        res.status(404).send("error in the data")
+        // res.status(404).send("error in the data")
     })
 }
 
@@ -55,12 +55,19 @@ exports.create=async(req,res)=>{
         profile:req.body.profile
 
     })
-    //if(!fuel) return res.status(400).send("cannot get information")
+    if(req.body.gallon<1000 || req.body.date===null || req.body.gallon===null )
+    {
+        res.status(400).send("At least 1000 gals or date or gallon must be filled")
+    }
+   else
+   {
     fuel.save().then(gas=>{
         //if(!gas) return res.status(400).send("cannot get information")
+        
         res.status(200).send("OK")
     }).catch(err=>{
-        console.log(err)
-        res.status(400).send(err.message)
+        // console.log(err)
+        // res.status(400).send(err.message)
     })
+   }
 }

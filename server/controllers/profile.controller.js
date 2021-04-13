@@ -3,14 +3,16 @@ exports.getall=async (req,res)=>{
     await db.profile.findAll({
         include:[{model:db.user, nested: true,as:"user_profile",attributes:["id","username"]}]
     }).then(profile=>{
-        if(!profile) return res.status(400).send("No Data found")
+        //if(!profile) return res.status(400).send("No Data found")
         return res.status(200).send({
-            data:profile
+            data:profile,
+            message:"OK"
         })
-    }).catch(err=>{
-        console.log(err)
-        res.status(404).send(err.message)
     })
+    // .catch(err=>{
+    //     //console.log(err)
+    //     res.status(404).send(err.message)
+    // })
 }
 exports.create=async(req,res)=>{
     const profile=await db.profile.build({ 
@@ -29,34 +31,20 @@ exports.create=async(req,res)=>{
     await db.profile.findOne({
         where:{
             
-            email:req.body.email,
-        }
-    }).then(profiles=>{
-        if(profiles)return res.status(400).send("Email must be unique") 
-    })
-    await db.profile.findOne({
-        where:{
-            
             user:req.body.user,
-        }
-    }).then(profiles=>{
-        if(profiles)return res.status(400).send("user existed") 
-    })
-    await db.profile.findOne({
-        where:{
             
-            slug:req.body.slug,
         }
     }).then(profiles=>{
-        if(profiles)return res.status(400).send("slug must be unique") 
-    })
-    if(!profile) return res.status(400).send("ERROR IN CREATING")
+             if(profiles)return res.status(400).send("user existed")
+             
+         })
+    //if(!profile) return res.status(400).send("ERROR IN CREATING")
     profile.save().then(user=>{
-        if(!user) return res.status(400).send("cannot get information")
+        //if(!user) return res.status(400).send("cannot get information")
         res.status(200).send("OK")
     }).catch(err=>{
-        console.log(err)
-        res.status(400).send(err.message)
+        //console.log(err)
+        res.status(404).send("information must be unique")
     })
 }
 exports.findOne=async(req,res)=>{
@@ -66,14 +54,14 @@ exports.findOne=async(req,res)=>{
         },
         include:[{model:db.user, nested: true,as:"user_profile",attributes:["id","username"]}]
     }).then(profile=>{
-        if(!profile) return res.status(400).send("No data Found")
+        //if(!profile) return res.status(400).send("No data Found")
         return res.status(200).send({
             message:"OK",
             profile
         }) 
     }).catch(err=>{
         res.status(400).send("Cannot get data")
-        console.log(err)
+        //console.log(err)
         
     })
 }
@@ -91,13 +79,13 @@ exports.updateUser=async(req,res)=>{
             slug:req.params.slug
         
     })}).then(profile=>{
-        if(!profile) return res.status(400).send("NO data found")
+        //if(!profile) return res.status(400).send("NO data found")
         res.status(200).send({
             data:profile,
             message:"Updated"
         })
     }).catch(err=>{
-        console.log(err);
+        //console.log(err);
         return res.status(400).send("Unable to update")
     })
 }
@@ -109,14 +97,14 @@ exports.delete=async(req,res)=>{
             slug:req.params.slug
         },
     }).then(profile=>{
-        if(!profile) return res.status(400).send("No data Found")
+        //if(!profile) return res.status(400).send("No data Found")
         return res.status(200).send({
             message:"OK",
           
         }) 
     }).catch(err=>{
         res.status(400).send("Cannot delete data")
-        console.log(err)
+        //console.log(err)
         
     })
 }
