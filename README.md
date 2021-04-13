@@ -6,4 +6,5 @@ To run the project<br />
 ** `cd server` then run `npm run dev` ** <br />
 To run the mocha unit testing <br />
 ** `cd server` then run `npm run coverage` ** <br />
+After run the test unit, Please go to server/coverage/index.html to see the result
 
