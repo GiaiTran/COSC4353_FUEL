@@ -76,7 +76,6 @@ export default function CreateProfile()
       const id=localStorage.getItem("id")
       let history = useHistory();
       const [getUser,setUser]=useState([])
-      const [err,setErr]=useState("")
       const [profleInfo,SetProfileInfo]=useState({
         email:null,
         fullname:null,
@@ -87,7 +86,7 @@ export default function CreateProfile()
         zipcode:null,
         profile_id:id,
         outOfState:null,
-        slug:localStorage.getItem("id"),
+        slug:null,
         user:localStorage.getItem("id"),
         errors:{
             fullname:'',
@@ -178,16 +177,12 @@ export default function CreateProfile()
                 setError(err.response.data)
                 if(err.response.data==="user existed")
                 {
-                    setErr(err.response.data)
                     alert("your already registered the profile!")
                     history.push("/admin/profile")
                 }
                 console.log(err)
             })
           
-      }
-      const check=()=>{
-          if(profleInfo.fullname!==null && profleInfo.email!==null && profleInfo.address1!==null && profleInfo.city!==null && profleInfo.state!==null && profleInfo.zipcode!==null && profleInfo.zipcode.length>5) return true
       }
       
     //   useEffect(()=>{
@@ -202,11 +197,8 @@ export default function CreateProfile()
                 Customer Profile
             </h1>
             {error?(<Alert variant='danger'><h3>{error}</h3></Alert>):null}
-            
             <Form onSubmit={createprofile}>
-
                 <Form.Row>
-                   
                     <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label>Name</Form.Label>
                         <Form.Control  type="text" placeholder="Enter Name" name="fullname" onChange={handleChange}  />
@@ -226,7 +218,7 @@ export default function CreateProfile()
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridPassword">
                         <Form.Label>slug</Form.Label>
-                        <Form.Control type="text" name="slug" value={profleInfo.user} disabled onChange={handleChange} maxLength={3} placeholder="slug" />
+                        <Form.Control type="text" name="slug" onChange={handleChange} maxLength={3} placeholder="slug" />
                         {profleInfo.errors.slug.length>0 && 
                         <span className={classes.span}>{profleInfo.errors.slug}</span>}
                     </Form.Group>
@@ -270,13 +262,11 @@ export default function CreateProfile()
                         <span className={classes.span}> {profleInfo.errors.zipcode}</span>}
                     </Form.Group>
                 </Form.Row>
-                
-                <Button variant="primary" type="submit" disabled={!check()}>
+            
+                <Button variant="primary" type="submit">
                     Submit
                 </Button>
-                
             </Form>
-           
         </Container>
         </>
         

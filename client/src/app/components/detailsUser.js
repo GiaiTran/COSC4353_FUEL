@@ -15,8 +15,7 @@ class Details extends Component{
                 city:null,
                 state:null,
                 zipcode:null
-            },
-            history:""
+            }
         }
     };
     
@@ -83,7 +82,16 @@ class Details extends Component{
                 <Card.Footer className="text-center"><a href={`/history/${user.slug}`}>View Transactions</a></Card.Footer>
             </Card>
         </Container>
-        
+        {/* <th>{user.slug}</th>
+                        <th>{user.fullname}</th>
+                        <th>{user.email}</th>
+                        <th>{user.address1}</th>
+                        <th>{user.address2}</th>
+                        <th>{user.city}</th>
+                        <th>{user.state}</th>
+                        <th>{user.zipcode}</th>
+                        <th>{user.outOfState}</th> */}
+        {/* <th><a href={`/profile/update/${user.slug}`}>Update</a></th> */}
         </>
         )
     }

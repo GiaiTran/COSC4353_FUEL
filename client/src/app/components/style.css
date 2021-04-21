@@ -84,16 +84,3 @@
   #myTable tr.header, #myTable tr:hover {
     background-color: #f1f1f1;
   }
-  .gasf-header{
-    padding-top: 20px;
-    text-align: center;
-  }
-  .gasf-form{
-    position: relative;
-    padding: 50px;
-    margin:auto;
-    left:90px;
-    
-    border: 1px solid black;
-    top:50px
-  }

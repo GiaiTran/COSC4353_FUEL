@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios'
 import {Nav, NavItem, Navbar, NavDropdown, Container} from 'react-bootstrap';
-import {CheckProfile} from './check'
+
 import "./style.css"
 
 
@@ -15,16 +15,35 @@ class Example extends React.Component {
         }
 
     }
-    logout=()=>{
+    // checkUser=()=>{
+    //     axios.get("http://127.0.0.1:8000/api/profile/getall")
+    //     .then(res=>{
+    //         this.setState({user:res.data.data})
+    //         const k=localStorage.getItem("id")
+    //         const array=[]
+    //             this.state.user.map((i)=>{
+    //                 array.push(i.user)
+    //             })
+    //             if(array.includes(parseInt(k)))
+    //             {
+    //                 return true
+                    
+    //             }
+    //             else{
+    //                 return false
+    //             }
+    //     })
+    // }
+    logout=(props)=>{
         
         localStorage.clear();
-        this.props.history.push("/login")
+        this.props.history.push("/login") 
     }
     render() {
-        const user=localStorage.getItem('username')
         
         return (
             <>
+            
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{position:"sticky",top:0,zIndex:"100"}}>
                 <Navbar.Brand href="#home" style={{paddingLeft:"22px"}}>Gas Project</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,8 +52,8 @@ class Example extends React.Component {
                     
                     </Nav>
                     <Nav style={{paddingRight:"40px"}}>
-                    <NavDropdown title={`welcome ${user}`} id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="/admin/profile">Admin Page</NavDropdown.Item>
+                    <NavDropdown title="Welcome User" id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={this.logout}>Logout</NavDropdown.Item>
                     </NavDropdown>
@@ -43,16 +62,20 @@ class Example extends React.Component {
                 
             </Navbar>
             <div class="sidenav">
-                    <a href={`/detail/${localStorage.getItem("id")}`}>Update</a>
-                    {CheckProfile?(null):(<a href="/create/profile">Create</a>)}
+                    <a href="/admin/profile">Admin Page</a>
+                    {this.checkUser===true?(<a href="#">Tao` Lao</a>):(<a href="/create/profile">Create</a>)}
                     
-                    <a href="/create/gas">Gas Purchase</a>
-                    <a href={`/history/${localStorage.getItem("id")}`}>User Report</a>  
+                    <a href="/create/gas">Gas Create</a>
+                    <a href="#">Contact</a>
             </div>
-          </>
+            
 
+
+            
+          
+          
+          </>
         );
-    
     }
 }
 export default withRouter(Example)

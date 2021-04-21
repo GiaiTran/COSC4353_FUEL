@@ -14,7 +14,7 @@ import Details from './app/components/detailsUser'
 import Update from './app/components/updateUser'
 import HeaderNav from './app/components/headerNav'
 import GetHist from './app/components/quoteHistory'
-import {checkAuth,CheckProfile} from "./app/components/check"
+
 class App extends Component {
   constructor(props)
   {

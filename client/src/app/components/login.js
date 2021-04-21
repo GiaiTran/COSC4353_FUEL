@@ -3,7 +3,7 @@ import {React,useState,state, useEffect} from 'react'
 import { Container,Alert,Form,Col,Card,Row,Button } from 'react-bootstrap';
 import {useHistory} from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
-import {checkAuth,CheckProfile} from "./check"
+
 const useStyles=makeStyles(theme=>({
     top:{
         marginTop:"150px"
@@ -51,7 +51,31 @@ const getNewToken=()=>{
         })
     }
 }
-
+function Check()
+    {
+        const [getUser,setUser]=useState([]);
+        axios.get("http://127.0.0.1:8000/api/profile/getall").
+            then(res=>{
+                setUser(res.data)
+                const k=localStorage.getItem("id")
+                console.log(getUser)
+                const array=[]
+                getUser.map((i)=>{
+                    array.push(i.user)
+                })
+                if(array.includes(parseInt(k)))
+                {   
+                    console.log("true")
+                    return true
+                }
+                else{
+                    console.log("false")
+                    return false
+                }
+            }
+            )
+         
+    }
 export default function Login()
 {
     let history = useHistory();
@@ -72,49 +96,44 @@ export default function Login()
     const login=(e)=>{
         e.preventDefault()
         axios.post("http://127.0.0.1:8000/api/users/signin",loginInfo)
-        .then((res)=>{
-             console.log(res.data)
-            localStorage.setItem("id",res.data.id);
-            const k=localStorage.getItem("id")
-             console.log("dasdasd"+k)
-            axios.get("http://127.0.0.1:8000/api/profile/getall").
-            then(response=>{
-                // console.log("res", response.data.data)
-                setUser(response.data.data)
-                // console.log("getUser", getUser)
-                const temp = response.data.data
-                console.log(response.data.data)
-                // console.log(k)
-                const array=[]
-                temp.map((i)=>{
-                    array.push(i.user)
-                })
-                console.log(getUser)
-                if(array.includes(parseInt(k)))
-                {   
-                    console.log("true")
-                    history.push("/admin/profile")
-                    return true
-                }
-                else{
-                    console.log("false")
-                    history.push("/create/profile")
-                    return false
-                }
-            }).catch(error=>{
-                console.log(error)
-            })
-            
-                
+        .then((res,err)=>{
+            if(err)
+            {
+                console.log(err)
+            }
+            else{
+                console.log(res.data)
+                localStorage.setItem("id",res.data.id);
                 localStorage.setItem("token",res.data.accessToken);
                 localStorage.setItem("username",res.data.username);
                 
+                // axios.get("http://127.0.0.1:8000/api/profile/getall").
+                // then(res=>{
+                //     setUser(res.data)
+                //     const k=localStorage.getItem("id")
+                //     console.log(getUser)
+                //     const array=[]
+                //     getUser.map((i)=>{
+                //         array.push(i.user)
+                //     })
+                //     if(array.includes(parseInt(k)))
+                //     {   
+                //         console.log("true")
+                //         return true
+                //     }
+                //     else{
+                //         console.log("false")
+                //         return false
+                //     }
+                // })
+                
+            
                     
-            //history.push("/admin/profile")
+                    //history.push("/create/profile")
                 
                 //setTimeout(getNewToken,300);
                 
-            
+            }
                 
         })
         .catch(err=>{
@@ -122,9 +141,11 @@ export default function Login()
             console.log(err.response.data)
         })
     };
-    useEffect(()=>{
+    
+    // useEffect(()=>{
         
-    })
+    //     check()
+    // },[])
    
     return(
         <Container fluid className={classes.top} >

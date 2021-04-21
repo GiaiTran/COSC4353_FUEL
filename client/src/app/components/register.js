@@ -38,10 +38,10 @@ const useStyles=makeStyles(theme=>({
 export default function Signup()
 {
     const [signupInfo,setSignupInfo]=useState({
-        username:null,
-        password:null,
-        passwordConfirm:null,
-        profile:null,
+        username:"",
+        password:"",
+        passwordConfirm:"",
+        profile:"",
     });
     const classes = useStyles();
     const [error,setError]=useState("");
@@ -51,20 +51,34 @@ export default function Signup()
     }
     let history=useHistory();
     const signup=(e)=>{
-        if(signupInfo.username===null || signupInfo.username===" "){
-            setError("Please type information")
-        }
+        
         axios
         .post("http://127.0.0.1:8000/api/users/register",signupInfo)
-        .then((res)=>{
-            
-            
+        .then((err)=>{
             history.push("/login");
-            console.log(res)
-            
+            if(err.data)
+            {
+                setError(err.data);
+                console.log(err.data)
+            }
+            else{
+
+                const username=signupInfo.username;
+                const password=signupInfo.password;
+                axios
+                .post("http://127.0.0.1:8000/api/users/signin",{username,password})
+                .then(res=>{
+                    localStorage.setItem("token",res.data.token);
+                    localStorage.setItem("username",res.data.username);
+                    localStorage.setItem("role",res.data.role);
+                    localStorage.setItem("profile",res.data.profile)
+                    history.push("/");
+                    setSuccess("Successful Register Account")
+                    console.log(res)
+                })
+            }
         })
         .catch(err=>{
-            
             setError(err.response.data);
             console.log(err.response)
            

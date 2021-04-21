@@ -174,7 +174,7 @@ export default function GetAllUser()
                                             <Table>
                                              <thead>
                                                 <tr>Date: <span>{moment(j.date).format("MMM Do YYYY")}</span></tr>
-                                                <tr>Gallon: <span>{`${j.gallon} gals`}</span></tr>
+                                                <tr>Gallon: <span>{j.gallon}</span></tr>
                                             </thead>
                                             </Table>
 
