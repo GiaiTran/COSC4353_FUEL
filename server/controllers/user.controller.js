@@ -23,8 +23,9 @@ exports.register=async (req,res)=>{
             username:req.body.username
         }
     })
-    if(check) res.status(400).send("username is exsited")
+    if(check) res.status(404).send("username is exsited")
     else{
+        
         user.save().then(users=>{
             //if(!users) res.status(400).send("Cannot get information")
             res.status(200).send("OK")
