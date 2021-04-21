@@ -4,6 +4,8 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 //const { user } = require("../models");
 const tokenList={};
+const JWT="course_class_4353"
+const JWT_COOKIE_EXPIRED=300
 exports.register=async (req,res)=>{
     const password=req.body.password;
     const passwordConfirm=req.body.passwordConfirm;
@@ -24,12 +26,13 @@ exports.register=async (req,res)=>{
     if(check) res.status(400).send("username is exsited")
     else{
         user.save().then(users=>{
-            if(!users) res.status(400).send("Cannot get information")
+            //if(!users) res.status(400).send("Cannot get information")
             res.status(200).send("OK")
-        }).catch(err=>{
-            console.log(err)
-            res.status(400).send("Cannot register")
         })
+        // .catch(err=>{
+        //     //console.log(err)
+        //     res.status(400).send("Cannot register")
+        // })
     }
 
 }
@@ -46,8 +49,8 @@ exports.signin=async (req,res)=>{
         {
             return res.status(400).send("Invalid Password")
         }
-        var token=jwt.sign({id:user.id},process.env.JWT,{expiresIn:300})
-        var refreshToken=jwt.sign({id:user.id},process.env.JWT,{expiresIn:300}) 
+        var token=jwt.sign({id:user.id},JWT,{expiresIn:300})
+        var refreshToken=jwt.sign({id:user.id},JWT,{expiresIn:300}) 
         const response={
             'status':"OK",
             accessToken:token,
@@ -59,10 +62,11 @@ exports.signin=async (req,res)=>{
         
         tokenList[refreshToken]=response;
         res.status(200).json(response)
-    }).catch((err)=>{
-        console.log(err)
-        res.status(400).send(err.message)
     })
+    // .catch((err)=>{
+    //     console.log(err)
+    //     res.status(400).send(err.message)
+    // })
 
 }
 exports.token=async (req,res)=>{
@@ -85,7 +89,7 @@ exports.token=async (req,res)=>{
             const user={
                 "username":data.username
             }
-            var token=jwt.sign(user,process.env.JWT,{expiresIn:300})
+            var token=jwt.sign(user,JWT,{expiresIn:300})
             
             // res.status(200).send({
             //     id:user.id,
@@ -102,8 +106,9 @@ exports.token=async (req,res)=>{
         }
         }
         
-    }).catch((err)=>{
-        console.log(err)
-        res.status(400).send(err.message)
     })
+    // .catch((err)=>{
+    //     console.log(err)
+    //     res.status(400).send(err.message)
+    // })
 };

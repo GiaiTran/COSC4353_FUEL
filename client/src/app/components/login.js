@@ -3,7 +3,7 @@ import {React,useState,state, useEffect} from 'react'
 import { Container,Alert,Form,Col,Card,Row,Button } from 'react-bootstrap';
 import {useHistory} from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
-import {checkAuth,CheckProfile} from "./check"
+
 const useStyles=makeStyles(theme=>({
     top:{
         marginTop:"150px"

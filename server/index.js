@@ -13,25 +13,28 @@ dotenv.config({path:'./.env'})
 app.use(cors());
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
-
+app.use(express.json());
+express.json()
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-db.sequelize.sync().then(console.log("connected database")).catch(err=>{console.log(err)});
+app.use(express.urlencoded({ extended: true }));
+express.urlencoded()
+db.sequelize.sync().then(console.log("connected database"))
+// .catch(err=>{console.log(err)});
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log("Drop and re-sync db.");
 //   });
 
 
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
+    res.json({ message: "hello" });
   });
 
 app.use("/api/users",User)
 app.use("/api/profile",Profile)
 app.use("/api/fuel",Fuel)
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+exports.app=app
