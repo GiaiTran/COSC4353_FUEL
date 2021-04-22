@@ -59,16 +59,16 @@ export default class GetHistory extends Component{
     calculateFirst(state,gallon)
     {
         if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0+0.03+0.1)*1.5)+1.5)*gallon)
 
         else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas(((0.02-0+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0+0.03+0.1)*1.5)+1.5)*gallon)
     }
 
     calculateSecond(state,gallon)
     {
         if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0.01+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0.01+0.03+0.1)*1.5)+1.5)*gallon)
 
         else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50)*gallon)
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0.01+0.03+0.1)*1.50)+1.50)*gallon)

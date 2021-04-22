@@ -62,9 +62,9 @@ export default function CreateFuel()
             fuelInfo.errors.gallon="How Much Gallon you want?"
            
         }
-        if(fuelInfo.gallon<1000)
+        if(fuelInfo.gallon<100)
         {
-            fuelInfo.errors.gallon="at least 1000 gallon?"
+            fuelInfo.errors.gallon="at least 100 gallon?"
             
         }
         if(fuelInfo.slug===null)
@@ -94,7 +94,7 @@ export default function CreateFuel()
         
     }
     const check=()=>{
-        if(fuelInfo.gallon>1000 && fuelInfo.gallon!==null) return true
+        if(fuelInfo.gallon>100 && fuelInfo.gallon!==null) return true
 
     }
 
@@ -147,16 +147,16 @@ export default function CreateFuel()
     const calculateFirst=(state,gallon)=>
     {
         if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0+0.03+0.1)*1.5)+1.5)*gallon)
 
         else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas(((0.02-0+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0+0.03+0.1)*1.5)+1.5)*gallon)
     }
 
     const calculateSecond=(state,gallon)=>
     {
         if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5)*gallon)
-        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0.01+0.03+0.1)*1.5)+1.5*gallon)
+        else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0.01+0.03+0.1)*1.5)+1.5)*gallon)
 
         else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50)*gallon)
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0.01+0.03+0.1)*1.50)+1.50)*gallon)
@@ -187,7 +187,7 @@ export default function CreateFuel()
             
                 <Form.Group controlId="formGroupPassword">
                     <Form.Label>Gallon</Form.Label>
-                    <Form.Control className="inputGas" type="number" name="gallon" min="1" step="any" placeholder="Gallon" onChange={handleChange}/>
+                    <Form.Control className="inputGas" type="number" name="gallon" min="1" step="any" placeholder="Type Gallon at least 101" onChange={handleChange}/>
                     
                     {fuelInfo.errors.gallon.length>0 && 
                         <span style={{color:"red"}}>{fuelInfo.errors.gallon}</span>}
@@ -222,7 +222,7 @@ export default function CreateFuel()
 
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary"  onClick={handleClose}>
                         Close
                     </Button>
                     <Button variant="primary" type="submit" onClick={createfuel}>
