@@ -97,3 +97,5 @@
     border: 1px solid black;
     top:50px
   }
+
+  .rowhighlight > td { background-color: green;}

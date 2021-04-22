@@ -4,6 +4,8 @@ import "./style.css"
 import HeaderNav from './headerNav';
 import {Container,Card} from 'react-bootstrap';
 import moment from "moment";
+import $ from "jquery"
+import "./style.css"
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -76,8 +78,7 @@ export default class GetHistory extends Component{
    
     render(){
         const fuels=this.state.fuel
-       
-
+        console.log(fuels.length)
         return(
             <>
             <HeaderNav/>
@@ -116,7 +117,7 @@ export default class GetHistory extends Component{
                         
                         
                         
-                        <td>{i.histories.address1}</td>
+                        <td >{i.histories.address1}</td>
                         <td>{i.histories.address2}</td>
 
                         <td>{i.histories.city}</td>
@@ -124,10 +125,13 @@ export default class GetHistory extends Component{
                         <td>{i.histories.zipcode}</td>
                         <td>{moment(i.date).format("MM Do YYYY")}</td>
                         <td>{i.gallon}</td>
-                        <td className="price">{
+                        {(index+1)===fuels.length?(<td className="price" style={{backgroundColor:"yellow"}}>{
                                 index===0?(this.calculateFirst(i.histories.state,i.gallon)):(this.calculateSecond(i.histories.state,i.gallon))
                                 
-                            }</td>
+                            }</td>):(<td className="price">{
+                                index===0?(this.calculateFirst(i.histories.state,i.gallon)):(this.calculateSecond(i.histories.state,i.gallon))
+                                
+                            }</td>)}
                         
                     </tr>
                     

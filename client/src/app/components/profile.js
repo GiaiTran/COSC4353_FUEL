@@ -187,7 +187,7 @@ export default function CreateProfile()
           
       }
       const check=()=>{
-          if(profleInfo.fullname!==null && profleInfo.email!==null && profleInfo.address1!==null && profleInfo.city!==null && profleInfo.state!==null && profleInfo.zipcode!==null && profleInfo.zipcode.length>5) return true
+          if(profleInfo.fullname!==null && profleInfo.email!==null && profleInfo.address1!==null && profleInfo.city!==null && profleInfo.state!==null && profleInfo.zipcode!==null && profleInfo.zipcode.length>4) return true
       }
       
     //   useEffect(()=>{
