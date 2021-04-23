@@ -23,6 +23,7 @@ class Example extends React.Component {
     render() {
         const user=localStorage.getItem('username')
         
+     
         return (
             <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{position:"sticky",top:0,zIndex:"100"}}>
@@ -36,6 +37,8 @@ class Example extends React.Component {
                     <NavDropdown title={`welcome ${user}`} id="collasible-nav-dropdown">
                         <NavDropdown.Item href="/admin/profile">Admin Page</NavDropdown.Item>
                         <NavDropdown.Divider />
+                        <NavDropdown.Item href="/create/profile">Create Profile</NavDropdown.Item>
+                        <NavDropdown.Divider />
                         <NavDropdown.Item onClick={this.logout}>Logout</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
@@ -43,8 +46,9 @@ class Example extends React.Component {
                 
             </Navbar>
             <div class="sidenav">
-                    <a href={`/detail/${localStorage.getItem("id")}`}>Update</a>
-                    {CheckProfile?(null):(<a href="/create/profile">Create</a>)}
+                    
+                    {CheckProfile?(<a href={`/detail/${localStorage.getItem("id")}`}>Update</a>)
+                    :(<a href="/create/profile">Create</a>)}
                     
                     <a href="/create/gas">Gas Purchase</a>
                     <a href={`/history/${localStorage.getItem("id")}`}>User Report</a>  

@@ -89,12 +89,13 @@ export default function CreateFuel()
             })
             .catch(err=>{
                 setError(err.response.data)
+                alert("Error in purchasing gas")
                 console.log(err.response)
             })
         
     }
     const check=()=>{
-        if(fuelInfo.gallon>100 && fuelInfo.gallon!==null) return true
+        if(fuelInfo.gallon>99 && fuelInfo.gallon!==null) return true
 
     }
 
@@ -127,38 +128,38 @@ export default function CreateFuel()
 
     const SuggestFirst=(state,gallon)=>
     {
-        if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5))
+        if(state!=='TX' && gallon>999) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5))
         else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0+0.03+0.1)*1.5)+1.5)
 
-        else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5))
+        else if(state==='TX' && gallon>999) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5))
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas(((0.02-0+0.03+0.1)*1.5)+1.5)
     }
 
     const SuggestSecond=(state,gallon)=>
     {
-        if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5))
+        if(state!=='TX' && gallon>999) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5))
         else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas(((0.04-0.01+0.03+0.1)*1.5)+1.5)
 
-        else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50))
+        else if(state==='TX' && gallon>999) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50))
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0.01+0.03+0.1)*1.50)+1.50))
     }
 
 
     const calculateFirst=(state,gallon)=>
     {
-        if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5)*gallon)
+        if(state!=='TX' && gallon>999) return '$'+numberWithCommas((((0.04-0+0.02+0.1)*1.5)+1.5)*gallon)
         else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0+0.03+0.1)*1.5)+1.5)*gallon)
 
-        else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5)*gallon)
+        else if(state==='TX' && gallon>999) return '$'+numberWithCommas((((0.02-0+0.02+0.1)*1.5)+1.5)*gallon)
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0+0.03+0.1)*1.5)+1.5)*gallon)
     }
 
     const calculateSecond=(state,gallon)=>
     {
-        if(state!=='TX' && gallon>1000) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5)*gallon)
+        if(state!=='TX' && gallon>999) return '$'+numberWithCommas((((0.04-0.01+0.02+0.1)*1.5)+1.5)*gallon)
         else if(state!=='TX'&& gallon<1000) return '$'+numberWithCommas((((0.04-0.01+0.03+0.1)*1.5)+1.5)*gallon)
 
-        else if(state==='TX' && gallon>1000) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50)*gallon)
+        else if(state==='TX' && gallon>999) return '$'+numberWithCommas((((0.02-0.01+0.02+0.1)*1.50)+1.50)*gallon)
         else if(state==='TX'&& gallon<1000) return '$'+numberWithCommas((((0.02-0.01+0.03+0.1)*1.50)+1.50)*gallon)
     }
     
@@ -187,7 +188,7 @@ export default function CreateFuel()
             
                 <Form.Group controlId="formGroupPassword">
                     <Form.Label>Gallon</Form.Label>
-                    <Form.Control className="inputGas" type="number" name="gallon" min="1" step="any" placeholder="Type Gallon at least 101" onChange={handleChange}/>
+                    <Form.Control className="inputGas" type="number" name="gallon" min="1" step="any" placeholder="Type Gallon at least 100" onChange={handleChange}/>
                     
                     {fuelInfo.errors.gallon.length>0 && 
                         <span style={{color:"red"}}>{fuelInfo.errors.gallon}</span>}

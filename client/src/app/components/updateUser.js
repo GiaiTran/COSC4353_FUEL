@@ -138,15 +138,6 @@ export default function UpdateUser(props)
                     <Form.Label>Zipcode </Form.Label>
                     <Form.Control name="zipcode" onChange={handleChange} maxLength={9}/>
                     </Form.Group>
-                    <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>Out Of State</Form.Label>
-                        <Form.Control name="outOfState" onChange={handleChange} as="select" defaultValue="Choose...">
-                            <option>Choose...</option>
-                            <option value="yes">yes</option>
-                            <option value="no">no</option>
-                            
-                    </Form.Control>
-                    </Form.Group>
                 </Form.Row>
 
             

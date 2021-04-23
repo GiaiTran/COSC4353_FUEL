@@ -96,54 +96,7 @@ export default function GetAllUser()
                 <h3>{error}</h3>
             </Alert>:null}
         <Row>
-        {/* {dataUser&&dataUser.length>0&&dataUser.map((i)=>
-        
-        // <Col xs={1} md={5} style={{marginTop:"20px",marginBottom:"20px",marginLeft:"80px"}}>
-        //     <CardDeck>
-        //         <Card>
-        //             <Card.Body>
-        //                 <Card.Title style={{textAlign:"center"}}><a href={`/detail/${i.slug}`}>{i.slug}</a></Card.Title>
-        //                 <ListGroup className="list-group-flush">
-        //                     <ListGroupItem>Full Name: {i.fullname}</ListGroupItem>
-        //                     <ListGroupItem>Email: {i.email}</ListGroupItem>
-        //                     <ListGroupItem>Profile
-        //                         <ul className="tip-list">
-        //                             <li>Username: {i.user_profile?(i.user_profile.username):(<span>Null</span>)}</li>
-        //                             <li>Role: {i.user_profile?(i.user_profile.role):(<span>Null</span>)}</li>
-        //                             {fuel&&fuel.length>0&&fuel.map((j)=>
-        //                                 <div>{j.profile===i.slug?(<li>
-        //                                     {j.date}
-        //                                     <ul><li><span style={{fontWeight:"bold"}}>Gallon purchased: </span>{j.gallon}</li></ul>
-                                        
-                                        
-        //                                 </li>):null}</div>
-                                    
-        //                             )}
-        //                             {fuel&&fuel.length>0&&fuel.map((j)=>
-        //                                 <div>{j.profile===null?(<li>
-                                            
-        //                                     <li><span style={{fontWeight:"bold"}}>Not Register</span></li>
-                                        
-                                        
-        //                                 </li>):null}</div>
-                                    
-        //                             )} 
-                                
-        //                         </ul>
-
-        //                     </ListGroupItem>
-        //                 </ListGroup>
-        //             </Card.Body>
-        //             <Card.Footer style={{paddingLeft:"40%",paddingRight:"50%"}}>
-                    
-        //             <Button onClick={() => dele(i.slug)}>Delete</Button>
-        //             </Card.Footer>
-        //         </Card>
-        //     </CardDeck>
-        //     </Col>
-                <div>dasdasd</div>
-        
-        )} */}
+       
         <Table striped bordered hover size="sm" style={{marginTop:"20px",marginBottom:"20px",marginLeft:"60px"}}>
             <thead>
                 <tr>
@@ -151,7 +104,7 @@ export default function GetAllUser()
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Username</th>
-                <th>Role</th>
+               
                 <th>Gallon purchased</th>
                 
                 </tr>
@@ -164,7 +117,7 @@ export default function GetAllUser()
                         <td>{i.fullname}</td>
                         <td>{i.email}</td>
                         <td>{i.user?(i.user_profile.username):<span>null</span>}</td>
-                        <td>{i.user?(i.user_profile.role):<span>null</span>}</td>
+                       
                         <td>
                             {fuel&&fuel.length>0&&fuel.map((j)=>
                                 

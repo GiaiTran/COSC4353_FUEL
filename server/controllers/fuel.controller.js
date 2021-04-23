@@ -55,7 +55,7 @@ exports.create=async(req,res)=>{
         profile:req.body.profile
 
     })
-    if(req.body.gallon<100 || req.body.date===null || req.body.gallon===null )
+    if(req.body.gallon<99 || req.body.date===null || req.body.gallon===null )
     {
         res.status(400).send("At least 100 gals or date or gallon must be filled")
     }
