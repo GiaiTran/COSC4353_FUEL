@@ -14,3 +14,7 @@ Install pgAdmin 4 to install database
 https://www.enterprisedb.com/postgresql-tutorial-resources-training?cid=437
 
 https://www.postgresql.org/ftp/pgadmin/pgadmin4/v5.2/windows/
+
+After installed postgresql
+then access to server folder and run `npm run db` to create new database
+`ctr+c` on cmd to disconnect current port then run `npm run dev` to run the project with new database
