@@ -28,6 +28,7 @@ function numberWithCommas(x) {
 export default function CreateFuel()
 
 {
+    
     const email=localStorage.getItem("email")
     const classes = useStyles();
     let history=useHistory();
@@ -106,6 +107,10 @@ export default function CreateFuel()
         .then(res=>{
             setProfile(res.data)
             console.log(res)
+            if(res.data.profile===null){
+                alert("Your Profile is empty please check your profile again")
+                history.push("/create/profile")
+            }
             
         })
         .catch(err=>{
