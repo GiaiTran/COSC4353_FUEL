@@ -6,7 +6,7 @@ import {CheckProfile} from './check'
 import "./style.css"
 
 
-class Example extends React.Component {
+class Menu extends React.Component {
     constructor(props)
     {
         super(props)
@@ -47,8 +47,7 @@ class Example extends React.Component {
             </Navbar>
             <div class="sidenav">
                     
-                    {CheckProfile?(<a href={`/detail/${localStorage.getItem("id")}`}>Update</a>)
-                    :(<a href="/create/profile">Create</a>)}
+                    <a href={`/detail/${localStorage.getItem("id")}`}>Update</a>
                     
                     <a href="/create/gas">Gas Purchase</a>
                     <a href={`/history/${localStorage.getItem("id")}`}>User Report</a>  
@@ -59,4 +58,4 @@ class Example extends React.Component {
     
     }
 }
-export default withRouter(Example)
+export default withRouter(Menu)
