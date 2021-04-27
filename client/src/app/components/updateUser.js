@@ -92,7 +92,7 @@ export default function UpdateUser(props)
     return (
         <>
         <HeaderNav/>
-        <Container style={{margin:"100px 100px 100px auto"}}>
+        <Container style={{margin:"100px 100px 100px auto",position:"relative",right: "200px",top: "100px",}}>
             
             
             {error?(<Alert show={show} variant="danger" style={{textAlign:"center"}}>
