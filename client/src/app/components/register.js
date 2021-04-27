@@ -51,7 +51,7 @@ export default function Signup()
     }
     let history=useHistory();
     const signup=(e)=>{
-        if(signupInfo.username===null || signupInfo.username===" "){
+        if(signupInfo.username===null || signupInfo.username===" " || signupInfo.password===null || signupInfo.password===" "|| signupInfo.passwordConfirm===null || signupInfo.passwordConfirm===" "){
             setError("Please type information")
         }
         axios

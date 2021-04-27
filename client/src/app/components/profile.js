@@ -234,20 +234,20 @@ export default function CreateProfile()
                 
                     <Form.Group controlId="formGridAddress1">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="1234 Main St" name="address1" onChange={handleChange}/>
+                    <Form.Control type="text" placeholder="1234 Main St" name="address1" maxLength={50} onChange={handleChange}/>
                     {profleInfo.errors.address1.length>0 && 
                         <span className={classes.span}>{profleInfo.errors.address1}</span>}
                     </Form.Group>
                 
                     <Form.Group controlId="formGridAddress2">
                     <Form.Label>Address 2</Form.Label>
-                    <Form.Control type="text" placeholder="(optional) Apartment, studio, or floor" name="address2" onChange={handleChange} />
+                    <Form.Control type="text" placeholder="(optional) Apartment, studio, or floor" name="address2" maxLength={50} onChange={handleChange} />
                     </Form.Group>
                 
                     <Form.Row>
                     <Form.Group as={Col} controlId="formGridCity">
                         <Form.Label>City</Form.Label>
-                        <Form.Control type="text" name="city" onChange={handleChange} />
+                        <Form.Control type="text" name="city" maxLength={20} onChange={handleChange} />
                         {profleInfo.errors.city.length>0 && 
                         <span className={classes.span}>{profleInfo.errors.city}</span>}
                     </Form.Group>
